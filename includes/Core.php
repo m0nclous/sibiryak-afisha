@@ -2,6 +2,8 @@
 
 use Sibiryak_Afisha\Admin\Core as AdminCore;
 use Sibiryak_Afisha\Public\Core as PublicCore;
+use const Sibiryak_Afisha\SLUG;
+use const Sibiryak_Afisha\VERSION;
 
 /**
  * Ядро класса плагина.
@@ -24,6 +26,8 @@ class Core
     public function __construct()
     {
         $this->loader = new Loader();
+
+        wp_enqueue_script(SLUG . '-vue', plugin_dir_url(__FILE__) . '../assets/js/vue.js', [], VERSION);
 
         if (is_admin()) {
             $this->define_admin_hooks();
