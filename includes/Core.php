@@ -21,7 +21,7 @@ class Core
     protected Loader $loader;
 
     /**
-     * Запуск базовых функций ядра.
+     * Запуск базовых функций ядра
      */
     public function __construct()
     {
@@ -46,7 +46,7 @@ class Core
     }
 
     /**
-     * Регистрация всех хуков, связанных с публичной функциональностью.
+     * Регистрация всех хуков, связанных с публичной функциональностью
      */
     private function define_public_hooks(): void
     {
