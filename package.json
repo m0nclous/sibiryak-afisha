@@ -1,0 +1,11 @@
+{
+    "name": "sibiryak-afisha",
+    "version": "1.0.0",
+    "type": "module",
+    "private": true,
+    "author": "m0nclous",
+    "scripts": {
+    },
+    "devDependencies": {
+    }
+}
