@@ -130,7 +130,7 @@ class Core
             'hierarchical' => true,
 
             'rewrite' => true,
-            'capabilities' => array(),
+            'capabilities' => [],
             'meta_box_cb' => null,
             'show_admin_column' => true,
             'show_in_rest' => null,
@@ -149,7 +149,7 @@ class Core
                 'update_item' => 'Обновить возрастной рейтинг',
                 'add_new_item' => 'Добавить возрастной рейтинг',
                 'menu_name' => 'Возрастные рейтинги',
-                'back_to_items' => '← Возрастным рейтингам',
+                'back_to_items' => '← Назад к возрастным рейтингам',
                 'not_found' => 'Возрастных рейтингов не найдено'
             ],
             'description' => '',
@@ -157,7 +157,34 @@ class Core
             'hierarchical' => false,
 
             'rewrite' => true,
-            'capabilities' => array(),
+            'capabilities' => [],
+            'meta_box_cb' => null,
+            'show_admin_column' => true,
+            'show_in_rest' => null,
+            'rest_base' => null
+        ]);
+
+        // Регистрация таксономии "Залы"
+        register_taxonomy('afisha_hall', 'afisha', [
+            'labels' => [
+                'name' => 'Залы',
+                'singular_name' => 'зал',
+                'search_items' => 'Искать зал',
+                'all_items' => 'Все залы',
+                'view_item' => 'Просмотреть зал',
+                'edit_item' => 'Редактировать зал',
+                'update_item' => 'Обновить зал',
+                'add_new_item' => 'Добавить зал',
+                'menu_name' => 'Залы',
+                'back_to_items' => '← Назад к залам',
+                'not_found' => 'Залов не найдено'
+            ],
+            'description' => '',
+            'public' => true,
+            'hierarchical' => false,
+
+            'rewrite' => true,
+            'capabilities' => [],
             'meta_box_cb' => null,
             'show_admin_column' => true,
             'show_in_rest' => null,
