@@ -95,7 +95,7 @@ class Core
             'menu_position' => null,
             'menu_icon' => null,
             'hierarchical' => false,
-            'supports' => ['title', 'editor'],
+            'supports' => ['title', 'editor', 'thumbnail'],
             'taxonomies' => [],
             'has_archive' => false,
             'rewrite' => true,
