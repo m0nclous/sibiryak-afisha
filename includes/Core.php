@@ -29,6 +29,7 @@ class Core
 
         $this->define_global_hooks();
 
+        // Подключение bundle.js (генерирует webpack)
         wp_enqueue_script(SLUG . '-bundle', plugin_dir_url(__FILE__) . '../dist/bundle.js', [], VERSION);
 
         if (is_admin()) {
@@ -62,8 +63,12 @@ class Core
     private function define_global_hooks(): void
     {
         $this->loader->add_action('init', [$this, 'register_post_type_afisha']);
+        $this->loader->add_action('init', [$this, 'register_taxonomy_afisha']);
     }
 
+    /**
+     * Регистрация типа поста "Афиша"
+     */
     public function register_post_type_afisha(): void
     {
         register_post_type('afisha', [
@@ -95,6 +100,68 @@ class Core
             'has_archive' => false,
             'rewrite' => true,
             'query_var' => true,
+        ]);
+    }
+
+    /**
+     * Регистрация таксономий для типа поста "Афиша"
+     */
+    public function register_taxonomy_afisha(): void
+    {
+        // Регистрация таксономии "Категории"
+        register_taxonomy('afisha_cat', 'afisha', [
+            'labels' => [
+                'name' => 'Категории',
+                'singular_name' => 'Категория',
+                'search_items' => 'Искать категорию',
+                'all_items' => 'Все категории',
+                'view_item' => 'Просмотреть категорию',
+                'parent_item' => 'Родительская категория',
+                'parent_item_colon' => 'Родительская категория:',
+                'edit_item' => 'Редактировать категорию',
+                'update_item' => 'Обновить категорию',
+                'add_new_item' => 'Добавить новую категорию',
+                'menu_name' => 'Категории',
+                'back_to_items' => '← Назад к категориям',
+                'name_admin_bar' => 'Категорий не найдено'
+            ],
+            'description' => '',
+            'public' => true,
+            'hierarchical' => true,
+
+            'rewrite' => true,
+            'capabilities' => array(),
+            'meta_box_cb' => null,
+            'show_admin_column' => true,
+            'show_in_rest' => null,
+            'rest_base' => null
+        ]);
+
+        // Регистрация таксономии "Возрастные рейтинги"
+        register_taxonomy('afisha_age-rating', 'afisha', [
+            'labels' => [
+                'name' => 'Возрастные рейтинги',
+                'singular_name' => 'Возрастной рейтинг',
+                'search_items' => 'Искать возрастной рейтинг',
+                'all_items' => 'Все возрастные рейтинги',
+                'view_item' => 'Просмотреть возрастной рейтинг',
+                'edit_item' => 'Редактировать возрастной рейтинг',
+                'update_item' => 'Обновить возрастной рейтинг',
+                'add_new_item' => 'Добавить возрастной рейтинг',
+                'menu_name' => 'Возрастные рейтинги',
+                'back_to_items' => '← Возрастным рейтингам',
+                'not_found' => 'Возрастных рейтингов не найдено'
+            ],
+            'description' => '',
+            'public' => true,
+            'hierarchical' => false,
+
+            'rewrite' => true,
+            'capabilities' => array(),
+            'meta_box_cb' => null,
+            'show_admin_column' => true,
+            'show_in_rest' => null,
+            'rest_base' => null
         ]);
     }
 
