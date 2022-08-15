@@ -1,7 +1,6 @@
 <?php namespace Sibiryak_Afisha\Includes;
 
 use Sibiryak_Afisha\Admin\Core as AdminCore;
-use Sibiryak_Afisha\MetaBoxes\MetaBoxes;
 use Sibiryak_Afisha\Public\Core as PublicCore;
 use const Sibiryak_Afisha\SLUG;
 use const Sibiryak_Afisha\VERSION;
@@ -47,7 +46,8 @@ class Core
     {
         $this->loader->add_action('admin_enqueue_scripts', [AdminCore::class, 'enqueue_styles']);
         $this->loader->add_action('admin_enqueue_scripts', [AdminCore::class, 'enqueue_scripts']);
-        $this->loader->add_action('init', [$this, 'add_meta_boxes_afisha']);
+
+        $this->loader->add_action('init', [AdminCore::class, 'add_meta_boxes_afisha']);
     }
 
     /**
@@ -192,18 +192,6 @@ class Core
             'show_in_rest' => null,
             'rest_base' => null
         ]);
-    }
-
-    /**
-     * Добавление мета блоков для афиши
-     */
-    public function add_meta_boxes_afisha(): void
-    {
-        add_action('add_meta_boxes', function () {
-            add_meta_box('time_spending', 'Настройка времени проведения', [MetaBoxes::class, 'timeSpending'], 'afisha', 'normal', 'high');
-        }, 1);
-
-        add_action('save_post', [MetaBoxes::class, 'timeSpendingSave'], 0);
     }
 
     /**
