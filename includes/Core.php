@@ -2,8 +2,6 @@
 
 use Sibiryak_Afisha\Admin\Core as AdminCore;
 use Sibiryak_Afisha\Public\Core as PublicCore;
-use const Sibiryak_Afisha\SLUG;
-use const Sibiryak_Afisha\VERSION;
 
 /**
  * Ядро класса плагина.
@@ -30,7 +28,7 @@ class Core
         $this->define_global_hooks();
 
         // Подключение bundle.js (генерирует webpack)
-        wp_enqueue_script(SLUG . '-bundle', plugin_dir_url(__FILE__) . '../dist/bundle.js', [], VERSION);
+//        wp_enqueue_script(SLUG . '-bundle', plugin_dir_url(__FILE__) . '../dist/bundle.js', [], VERSION);
 
         if (is_admin()) {
             $this->define_admin_hooks();
@@ -57,6 +55,9 @@ class Core
     {
         $this->loader->add_action('wp_enqueue_scripts', [PublicCore::class, 'enqueue_styles']);
         $this->loader->add_action('wp_enqueue_scripts', [PublicCore::class, 'enqueue_scripts']);
+
+        $this->loader->add_action('init', [PublicCore::class, 'add_filter_the_content']);
+        $this->loader->add_action('init', [PublicCore::class, 'add_shortcode_afisha_element']);
     }
 
     /**
