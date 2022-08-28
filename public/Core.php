@@ -57,9 +57,9 @@ class Core
                 'id' => $afishaPost->ID,
                 'title' => $afishaPost->post_title,
                 'content' => $afishaPost->post_content,
-                'category' => wp_get_post_terms($afishaPost->ID, 'afisha_cat', ['fields' => 'names'])[0],
-                'ageRating' => wp_get_post_terms($afishaPost->ID, 'afisha_age-rating', ['fields' => 'names'])[0],
-                'hall' => wp_get_post_terms($afishaPost->ID, 'afisha_hall')[0],
+                'category' => wp_get_post_terms($afishaPost->ID, 'afisha_cat', ['fields' => 'names'])[0] ?? [],
+                'ageRating' => wp_get_post_terms($afishaPost->ID, 'afisha_age-rating', ['fields' => 'names'])[0] ?? [],
+                'hall' => wp_get_post_terms($afishaPost->ID, 'afisha_hall')[0] ?? [],
                 'thumbnailUrl' => get_the_post_thumbnail_url($afishaPost->ID, 'full'),
                 'datetimeStart' => get_post_meta($afishaPost->ID, 'datetime-start', true)
             ];
